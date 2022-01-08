@@ -38612,6 +38612,7 @@ namespace ts {
             const symbol = getSymbolOfNode(node);
             const type = getDeclaredTypeOfSymbol(symbol) as InterfaceType;
             const typeWithThis = getTypeWithThisArgument(type);
+            debugger;
             const staticType = getTypeOfSymbol(symbol) as ObjectType;
             checkTypeParameterListsIdentical(symbol);
             checkFunctionOrConstructorSymbol(symbol);

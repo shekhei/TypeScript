@@ -7069,9 +7069,12 @@ namespace ts {
 
         function parseExpressionWithTypeArguments(): ExpressionWithTypeArguments {
             const pos = getNodePos();
+            const modifiers = parseModifiers();
             const expression = parseLeftHandSideExpressionOrHigher();
             const typeArguments = tryParseTypeArguments();
-            return finishNode(factory.createExpressionWithTypeArguments(expression, typeArguments), pos);
+            const node = factory.createExpressionWithTypeArguments(expression, typeArguments);
+            node.modifierFlagsCache = modifiersToFlags(modifiers);
+            return finishNode(node, pos);
         }
 
         function tryParseTypeArguments(): NodeArray<TypeNode> | undefined {
